@@ -10,12 +10,13 @@ class Store < ActiveRecord::Base
     presence: true,
     numericality: {only_integer:true, greater_than: 0}
 
-  # validate :contains_mens_or_womens?
+  validate :contains_mens_or_womens?
 
 
     def contains_mens_or_womens?
-      :mens_apparel == false && :womens_apparel == false
-        errors.add(:mens_apparel, "Needs to carry Mens or Womens Apparenl")
+      if mens_apparel == false && womens_apparel == false
+        errors.add(:mens_apparel, "Needs to carry Mens or Womens Apparel")
         errors.add(:womens_apparel, "Needs to carry Mens or Womens Apparel")
     end
+  end
 end
