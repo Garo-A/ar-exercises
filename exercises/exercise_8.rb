@@ -15,4 +15,4 @@ tester = @store1.employees.create(
   hourly_rate: 55
 )
 
-puts tester.password
+puts Employee.find_by(id: tester.id).password
