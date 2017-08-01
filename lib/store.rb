@@ -12,11 +12,23 @@ class Store < ActiveRecord::Base
 
   validate :contains_mens_or_womens?
 
-
     def contains_mens_or_womens?
       if mens_apparel == false && womens_apparel == false
         errors.add(:mens_apparel, "Needs to carry Mens or Womens Apparel")
         errors.add(:womens_apparel, "Needs to carry Mens or Womens Apparel")
     end
   end
+
+  before_destroy :destroyable?
+
+  private
+
+  def destroyable?
+    if self.employees.count >= 1
+      throw :abort
+    else
+      return true
+    end
+  end
+
 end
