@@ -14,7 +14,9 @@ puts "Give me a Store Name: "
 store_name = gets.chomp
 
 test_store = Store.new(
-  name: store_name
+  name: store_name,
+  mens_apparel: false,
+  womens_apparel: false
 )
 
 puts test_store.valid?
